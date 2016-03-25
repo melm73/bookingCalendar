@@ -3,9 +3,10 @@ import ajaxUtil from '../util/ajax-util';
 
 export class DayActions {
 
-  getDays(month, year) {
+  getDays() {
+    let state = store.getState().monthStore.toJS();
     return ajaxUtil.get({
-      url: `days?month=${month}&year=${year}`,
+      url: `days?month=${state.month}&year=${state.year}`,
       onSuccess: response => this.storeDays(response)
     });
   }

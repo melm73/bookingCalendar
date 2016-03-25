@@ -1,6 +1,7 @@
 import dayActions from '../day-actions';
 import ajaxUtil from '../../util/ajax-util';
 import store from '../../stores/store';
+import { fromJS } from 'immutable';
 
 describe('dayActions', () => {
   beforeEach(() => {
@@ -8,9 +9,10 @@ describe('dayActions', () => {
   });
 
   describe('getDays', () => {
-    it('calls the ajax util to get days for month and year', () => {
+    it('calls the ajax util to get days for store month and year', () => {
+      spyOn(store, 'getState').and.returnValue({monthStore: fromJS({month: 2, year: 2015})});
       spyOn(ajaxUtil, 'get').and.returnValue(Promise.resolve());
-      let promise = dayActions.getDays(2, 2015);
+      let promise = dayActions.getDays();
       expect(ajaxUtil.get).toHaveBeenCalled();
       expect(promise.then).toBeDefined();
 
