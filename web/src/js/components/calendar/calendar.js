@@ -7,22 +7,22 @@ require("../../../css/calendar.scss");
 
 export class Calendar extends React.Component {
   render() {
-    let month = 3;
-    let year = 2016;
     return (
       <div className='container'>
         <Header />
-        <Navigator month={month} year={year}/>
-        <Month month={month} year={year} />
+        <Navigator month={this.props.month} year={this.props.year}/>
+        <Month days={this.props.days} month={this.props.month} year={this.props.year} />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStoreToProps(store) {
   return {
-    days: state.dayStore.get('days').toJS()
+    days: store.dayStore.get('days').toJS(),
+    month: store.monthStore.get('month'),
+    year: store.monthStore.get('year')
   };
 }
 
-export default connect(mapStateToProps)(Calendar);
+export default connect(mapStoreToProps)(Calendar);
