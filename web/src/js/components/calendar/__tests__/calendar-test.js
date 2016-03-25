@@ -8,7 +8,7 @@ import shallowRenderer from '../../../util/__tests__/shallow-renderer';
 describe('Calendar', () => {
   let calendar, days, month, year;
   beforeEach(() => {
-    days = ['days'];
+    days = {'23': {id: '123'}};
     month = 2;
     year = 2016;
     calendar = shallowRenderer(

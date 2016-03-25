@@ -131,7 +131,7 @@
     "@screen-sm-max": "(@screen-md-min - 1)",
     "@screen-md-max": "(@screen-lg-min - 1)",
     "@grid-columns": "7",
-    "@grid-gutter-width": "30px",
+    "@grid-gutter-width": "4px",
     "@grid-float-breakpoint": "@screen-sm-min",
     "@grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
     "@container-tablet": "(720px + @grid-gutter-width)",
@@ -416,5 +416,5 @@
     "carousel.less"
   ],
   "js": [],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=7e814e4ebde00a38ce63"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=5a36c9f2319dcd798a85"
 }
