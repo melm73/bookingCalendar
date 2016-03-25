@@ -1,4 +1,4 @@
-//import store from '../stores/store';
+import store from '../stores/store';
 import ajaxUtil from '../util/ajax-util';
 
 export class DayActions {
@@ -12,6 +12,7 @@ export class DayActions {
 
   storeDays(days) {
     console.log(days);
+    store.dispatch({type: 'SET_DAYS', days: days});
   }
 }
 

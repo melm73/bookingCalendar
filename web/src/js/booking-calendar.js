@@ -1,15 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Provider } from 'react-redux';
 import Month from './components/calendar/calendar';
 import ajaxUtil from './util/ajax-util';
+import store from './stores/store';
 require('babel-polyfill');
 
 const App = React.createClass({
   render() {
     return (
       <div>
-        {this.props.children}
+        <Provider store={store}>
+          {this.props.children}
+        </Provider>
       </div>
     )
   }

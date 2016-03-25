@@ -1,7 +1,12 @@
 import dayActions from '../day-actions';
 import ajaxUtil from '../../util/ajax-util';
+import store from '../../stores/store';
 
 describe('dayActions', () => {
+  beforeEach(() => {
+    spyOn(store, 'dispatch');
+  });
+
   describe('getDays', () => {
     it('calls the ajax util to get days for month and year', () => {
       spyOn(ajaxUtil, 'get').and.returnValue(Promise.resolve());
@@ -17,6 +22,13 @@ describe('dayActions', () => {
       successCallback(['days']);
 
       expect(dayActions.storeDays).toHaveBeenCalledWith(['days']);
+    });
+  });
+
+  describe('storeDays', () => {
+    it('dispatches the days to the store', () => {
+      dayActions.storeDays('days');
+      expect(store.dispatch).toHaveBeenCalledWith({type: 'SET_DAYS', days: 'days'});
     });
   });
 });
