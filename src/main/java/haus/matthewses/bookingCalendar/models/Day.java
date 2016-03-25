@@ -16,14 +16,14 @@ public class Day {
 
   @NotNull
   private int day;
-  private String month;
+  private int month;
   private int year;
 
   private boolean publicHoliday;
   private boolean schoolHoliday;
   private Guest[] bookings;
 
-  public Day(int day, String month, int year, boolean publicHoliday, boolean schoolHoliday) {
+  public Day(int day, int month, int year, boolean publicHoliday, boolean schoolHoliday) {
     this.id =  new ObjectId().toString();
     this.day = day;
     this.month = month;
@@ -41,7 +41,7 @@ public class Day {
     return this.day;
   }
 
-  public String getMonth() {
+  public int getMonth() {
     return this.month;
   }
 

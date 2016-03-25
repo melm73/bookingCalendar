@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import Month from './components/calendar/calendar';
+import ajaxUtil from './util/ajax-util';
 require('babel-polyfill');
 
 const App = React.createClass({
@@ -15,7 +16,7 @@ const App = React.createClass({
 });
 
 let host = document.getElementById('host').textContent;
-//apiUtil.setUrl(host);
+ajaxUtil.setUrl(host);
 
 render((
   <Router history={hashHistory}>

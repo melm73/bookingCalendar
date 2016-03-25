@@ -16,8 +16,9 @@ public class DayController {
   @Autowired
   private DayRepository repository;
 
+  @CrossOrigin(origins = "http://localhost:8090")
   @RequestMapping(value="/days", method=RequestMethod.GET)
-  public @ResponseBody String index(@RequestParam(value="month") String month, @RequestParam(value="year") int year) {
+  public @ResponseBody String index(@RequestParam(value="month") int month, @RequestParam(value="year") int year) {
     try {
       return new ObjectMapper().writeValueAsString(repository.findByMonthAndYear(month, year));
     } catch (JsonProcessingException e) {
@@ -29,7 +30,7 @@ public class DayController {
   public @ResponseBody
   Day post(
     @RequestParam(value="day") int day,
-    @RequestParam(value="month") String month,
+    @RequestParam(value="month") int month,
     @RequestParam(value="year") int year,
     @RequestParam(value="schoolHoliday") boolean schoolHoliday,
     @RequestParam(value="publicHoliday") boolean publicHoliday

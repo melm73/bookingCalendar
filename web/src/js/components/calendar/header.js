@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default function MonthHeader(props) {
+export default function Header(props) {
   return (
     <div className='header'>
       <img src={'images/header.jpg'} />
     </div>
   );
 }
-//<div className='title float-right'>Moggs Creek Calendar</div>

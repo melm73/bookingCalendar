@@ -36,7 +36,7 @@ body {
 }
 
 .navigator {
-  color: white;
+  color: lightgray;
 
   .arrow-left {
     text-align: left;
@@ -60,14 +60,14 @@ body {
   }
 }
 
-.table {
-  background-color: white;
-  thead tr th {
+.month {
+  .dayTitle {
+    color: mediumpurple;
     text-align: center;
-    border: 2px solid black;
   }
 
-  td {
-    border: 2px solid black;
+  .day {
+    background-color: white;
+    border: 1px solid black;
   }
 }
