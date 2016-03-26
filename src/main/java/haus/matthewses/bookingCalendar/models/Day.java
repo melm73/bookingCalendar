@@ -21,15 +21,17 @@ public class Day {
 
   private boolean publicHoliday;
   private boolean schoolHoliday;
+  private String description;
   private Guest[] bookings;
 
-  public Day(int day, int month, int year, boolean publicHoliday, boolean schoolHoliday) {
+  public Day(int day, int month, int year, boolean publicHoliday, boolean schoolHoliday, String description) {
     this.id =  new ObjectId().toString();
     this.day = day;
     this.month = month;
     this.year = year;
     this.publicHoliday = publicHoliday;
     this.schoolHoliday = schoolHoliday;
+    this.description = description;
     this.bookings = new Guest[0];
   }
 
@@ -63,6 +65,14 @@ public class Day {
 
   public void setSchoolHoliday(boolean schoolHoliday) {
     this.schoolHoliday = schoolHoliday;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public Guest[] getBookings() {

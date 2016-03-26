@@ -33,9 +33,10 @@ public class DayController {
     @RequestParam(value="month") int month,
     @RequestParam(value="year") int year,
     @RequestParam(value="schoolHoliday") boolean schoolHoliday,
-    @RequestParam(value="publicHoliday") boolean publicHoliday
+    @RequestParam(value="publicHoliday") boolean publicHoliday,
+    @RequestParam(value="description") String description
   ) {
-    return repository.save(new Day(day, month, year, publicHoliday, schoolHoliday));
+    return repository.save(new Day(day, month, year, publicHoliday, schoolHoliday, description));
   }
 
   @RequestMapping(value="/day/{id}", method=RequestMethod.PUT)
@@ -43,11 +44,13 @@ public class DayController {
   Day put(
     @PathVariable(value="id") String id,
     @RequestParam(value="schoolHoliday") boolean schoolHoliday,
-    @RequestParam(value="publicHoliday") boolean publicHoliday
+    @RequestParam(value="publicHoliday") boolean publicHoliday,
+    @RequestParam(value="description") String description
   ) {
     Day day = repository.findOne(id);
     day.setSchoolHoliday(schoolHoliday);
     day.setPublicHoliday(publicHoliday);
+    day.setDescription(description);
     return repository.save(day);
   }
 }
