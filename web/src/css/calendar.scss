@@ -61,18 +61,79 @@ body {
 }
 
 .month {
-  .dayTitle {
+  .day-heading {
     color: mediumpurple;
     text-align: center;
   }
 
   .day {
     background-color: white;
-    border: 1px solid black;
+    margin-top: 3px;
+    overflow: auto;
+
+
+    .day-number {
+      font-size: 150%;
+      padding-left: 3px;
+    }
+
+    &.public-holiday .day-number {
+      color: mediumpurple;
+    }
+
+    .day-description {
+      font-size: 12px;
+      text-align: right;
+      padding-top: 10px;
+      color: mediumpurple;
+    }
+
+    .bookings {
+      list-style: none;
+      padding-left: 5px;
+    }
+
+    &.school-holiday {
+      background: repeating-linear-gradient(45deg, white, white 14px, #DDD5F3 14px, #DDD5F3 15px);
+      &:hover {
+        background: repeating-linear-gradient(45deg, #F1EDFA, #F1EDFA 14px, #DDD5F3 14px, #DDD5F3 15px);
+      }
+    }
+
+    &:hover {
+      background-color: #F1EDFA;
+      cursor: pointer;
+    }
   }
 }
 
-.day {
-  margin-top: 3px;
-  min-height: 90px;
+.modal {
+  .modal-header {
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    background-color: black;
+    color: white;
+    padding: 0px;
+
+    .day-number {
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 72px;
+    }
+
+    .week-day {
+      padding-top: 18px;
+      font-size: 24px;
+    }
+
+    .month-year {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 18px;
+      color: white;
+      opacity: 1;
+    }
+  }
 }
