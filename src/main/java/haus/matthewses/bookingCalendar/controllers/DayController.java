@@ -26,31 +26,19 @@ public class DayController {
     }
   }
 
+  @CrossOrigin(origins = "http://localhost:8090")
   @RequestMapping(value="/day", method=RequestMethod.POST)
-  public @ResponseBody
-  Day post(
-    @RequestParam(value="day") int day,
-    @RequestParam(value="month") int month,
-    @RequestParam(value="year") int year,
-    @RequestParam(value="schoolHoliday") boolean schoolHoliday,
-    @RequestParam(value="publicHoliday") boolean publicHoliday,
-    @RequestParam(value="description") String description
-  ) {
-    return repository.save(new Day(day, month, year, publicHoliday, schoolHoliday, description));
+  public @ResponseBody Day post(@RequestBody Day day) {
+    return repository.save(day);
   }
 
+  @CrossOrigin(origins = "http://localhost:8090")
   @RequestMapping(value="/day/{id}", method=RequestMethod.PUT)
   public @ResponseBody
-  Day put(
-    @PathVariable(value="id") String id,
-    @RequestParam(value="schoolHoliday") boolean schoolHoliday,
-    @RequestParam(value="publicHoliday") boolean publicHoliday,
-    @RequestParam(value="description") String description
-  ) {
+  Day put(@PathVariable(value="id") String id, @RequestBody Day updatedDay)
+   {
     Day day = repository.findOne(id);
-    day.setSchoolHoliday(schoolHoliday);
-    day.setPublicHoliday(publicHoliday);
-    day.setDescription(description);
-    return repository.save(day);
+    repository.delete(day);
+    return repository.save(updatedDay);
   }
 }

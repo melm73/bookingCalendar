@@ -18,15 +18,12 @@ export default class Day extends React.Component {
       <div className={`day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`} onClick={this.clickHandler.bind(this)}>
         <row>
           <div className="day-number col-xs-2">{this.props.day.day}</div>
-          <div className="day-description col-xs-5">{this.props.day.description}</div>
+          <div className="day-description col-xs-5">{this.props.day.publicHoliday}</div>
         </row>
         <row>
-          <ul className="bookings col-xs-7">
-            <li>Melanie</li>
-            <li>Paul</li>
-            <li>Felicity</li>
-            <li>Samantha</li>
-          </ul>
+          <div className="col-xs-7">
+            {this.props.day.notes}
+          </div>
         </row>
       </div>
     );
@@ -40,7 +37,7 @@ Day.propTypes = {
     month: React.PropTypes.number.isRequired,
     year: React.PropTypes.number.isRequired,
     schoolHoliday: React.PropTypes.bool,
-    publicHoliday: React.PropTypes.bool,
+    publicHoliday: React.PropTypes.string,
     description: React.PropTypes.string
   }).isRequired
 };

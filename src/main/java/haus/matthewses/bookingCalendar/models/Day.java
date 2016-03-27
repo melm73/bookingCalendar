@@ -4,12 +4,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.bson.types.ObjectId;
 import javax.validation.constraints.NotNull;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by melanie on 23/03/2016.
  */
 @Document
 public class Day {
+  @JsonIgnoreProperties(ignoreUnknown=true)
 
   @Id
   private String id;
@@ -19,19 +22,26 @@ public class Day {
   private int month;
   private int year;
 
-  private boolean publicHoliday;
+  private String publicHoliday;
   private boolean schoolHoliday;
-  private String description;
+  private String notes;
   private Guest[] bookings;
 
-  public Day(int day, int month, int year, boolean publicHoliday, boolean schoolHoliday, String description) {
+  @JsonCreator
+  public Day(
+      @JsonProperty("day") int day,
+      @JsonProperty("month") int month,
+      @JsonProperty("year") int year,
+      @JsonProperty("publicHoliday") String publicHoliday,
+      @JsonProperty("schoolHoliday") boolean schoolHoliday,
+      @JsonProperty("notes") String notes) {
     this.id =  new ObjectId().toString();
     this.day = day;
     this.month = month;
     this.year = year;
     this.publicHoliday = publicHoliday;
     this.schoolHoliday = schoolHoliday;
-    this.description = description;
+    this.notes = notes;
     this.bookings = new Guest[0];
   }
 
@@ -51,11 +61,11 @@ public class Day {
     return this.year;
   }
 
-  public boolean getPublicHoliday() {
+  public String getPublicHoliday() {
     return this.publicHoliday;
   }
 
-  public void setPublicHoliday(boolean publicHoliday) {
+  public void setPublicHoliday(String publicHoliday) {
     this.publicHoliday = publicHoliday;
   }
 
@@ -67,12 +77,12 @@ public class Day {
     this.schoolHoliday = schoolHoliday;
   }
 
-  public String getDescription() {
-    return this.description;
+  public String getNotes() {
+    return this.notes;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setNotes(String notes) {
+    this.notes = notes;
   }
 
   public Guest[] getBookings() {

@@ -70,7 +70,7 @@ body {
     background-color: white;
     margin-top: 3px;
     overflow: auto;
-
+    min-height: 80px;
 
     .day-number {
       font-size: 150%;
@@ -134,6 +134,19 @@ body {
       padding: 18px;
       color: white;
       opacity: 1;
+    }
+  }
+
+  .modal-body {
+
+    .checkbox{
+      padding-top: 2px;
+      line-height: 34px;
+      vertical-align: middle;
+
+      input {
+        margin-top: 11px;
+      }
     }
   }
 }

@@ -30,7 +30,7 @@ export default class Month extends React.Component {
   }
 
   saveDay(day) {
-    //dayActions.save(day);
+    dayActions.saveDay(day);
     this.hideModal();
   }
 

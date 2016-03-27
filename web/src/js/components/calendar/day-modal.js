@@ -8,15 +8,27 @@ export default class DayModal extends React.Component {
   }
 
   checkPublicHoliday(e) {
-    this.setState({publicHoliday: e.target.checked});
+    if (e.target.checked) {
+      this.setState({publicHoliday: ''});
+    } else {
+      this.setState({publicHoliday: null});
+    }
+  }
+
+  isPublicHoliday() {
+    return !(this.state.publicHoliday === null) && !(this.state.publicHoliday === undefined);
+  }
+
+  publicHolidayType() {
+    return this.isPublicHoliday() ? 'text' : 'hidden';
   }
 
   checkSchoolHoliday(e) {
     this.setState({schoolHoliday: e.target.checked});
   }
 
-  changeDescription(e) {
-    this.setState({description: e.target.value});
+  changePublicHoliday(e) {
+    this.setState({publicHoliday: e.target.value});
   }
 
   changeNotes(e) {
@@ -42,15 +54,6 @@ export default class DayModal extends React.Component {
         <Modal.Body>
           <div className="row">
             <form className="form-horizontal col-xs-4">
-              <div className="form-group ">
-                <div className="checkbox col-sm-7">
-                  <label>
-                    <input type="checkbox" checked={this.state.publicHoliday}
-                           onChange={this.checkPublicHoliday.bind(this)}/>
-                    Public Holiday
-                  </label>
-                </div>
-              </div>
               <div className="form-group">
                 <div className="col-sm-7 checkbox">
                   <label>
@@ -60,12 +63,19 @@ export default class DayModal extends React.Component {
                   </label>
                 </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input className="form-control" id="description"
-                       value={this.state.description} onChange={this.changeDescription.bind(this)} />
+              <div className="form-group ">
+                <div className="checkbox col-sm-3">
+                  <label>
+                    <input type="checkbox" checked={this.isPublicHoliday()}
+                           onChange={this.checkPublicHoliday.bind(this)}/>
+                    Public Holiday
+                  </label>
+                </div>
+                <div className="col-sm-4">
+                  <input type={this.publicHolidayType()} className="form-control" id="description"
+                         value={this.state.publicHoliday} onChange={this.changePublicHoliday.bind(this)} />
+                </div>
               </div>
-              <br />
               <div className="form-group">
                 <label htmlFor="description">Notes</label>
                 <textarea id='notes' className="form-control" rows="3"
@@ -78,7 +88,7 @@ export default class DayModal extends React.Component {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <Button onClick={this.props.onHide}>Cancel</Button>
           <Button onClick={this.save.bind(this)}>Save</Button>
         </Modal.Footer>
       </Modal>
