@@ -11,7 +11,7 @@ export class Calendar extends React.Component {
       <div className='container'>
         <Header />
         <Navigator month={this.props.month} year={this.props.year}/>
-        <Month days={this.props.days} month={this.props.month} year={this.props.year} />
+        <Month days={this.props.days} month={this.props.month} year={this.props.year} guests={this.props.guests} />
       </div>
     );
   }
@@ -21,7 +21,8 @@ function mapStoreToProps(store) {
   return {
     days: store.dayStore.get('days').toJS(),
     month: store.monthStore.get('month'),
-    year: store.monthStore.get('year')
+    year: store.monthStore.get('year'),
+    guests: store.guestStore.get('guests').toJS()
   };
 }
 

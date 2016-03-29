@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import moment from 'moment';
+import guestActions from '../../actions/guest-actions';
 
 export default class DayModal extends React.Component {
   componentWillMount() {
@@ -40,6 +41,7 @@ export default class DayModal extends React.Component {
   }
 
   render() {
+    console.log(this.props.guests);
     let date = moment([this.props.day.year, this.props.day.month - 1, 1]);
 
     return (
@@ -53,7 +55,7 @@ export default class DayModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <div className="row">
-            <form className="form-horizontal col-xs-4">
+            <form className="form-horizontal col-xs-3">
               <div className="form-group">
                 <div className="col-sm-7 checkbox">
                   <label>
@@ -64,14 +66,14 @@ export default class DayModal extends React.Component {
                 </div>
               </div>
               <div className="form-group ">
-                <div className="checkbox col-sm-3">
+                <div className="checkbox col-sm-4">
                   <label>
                     <input type="checkbox" checked={this.isPublicHoliday()}
                            onChange={this.checkPublicHoliday.bind(this)}/>
                     Public Holiday
                   </label>
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                   <input type={this.publicHolidayType()} className="form-control" id="description"
                          value={this.state.publicHoliday} onChange={this.changePublicHoliday.bind(this)} />
                 </div>
@@ -82,9 +84,18 @@ export default class DayModal extends React.Component {
                           value={this.state.notes} onChange={this.changeNotes.bind(this)} />
               </div>
             </form>
-            <div className="col-xs-3">
-              Bookings
-            </div>
+            <div className="col-xs-1" />
+            <form className="form-horizontal col-xs-3">
+              <div className="form-group">
+                <label htmlFor="guests">Add Guests</label>
+                <select id="guests" className="form-control">
+                  <option>Melanie</option>
+                  <option>Paul</option>
+                  <option>Felicity</option>
+                  <option>Samantha</option>
+                </select>
+              </div>
+            </form>
           </div>
         </Modal.Body>
         <Modal.Footer>

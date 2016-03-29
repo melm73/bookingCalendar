@@ -7,11 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import haus.matthewses.bookingCalendar.models.Guest;
 import haus.matthewses.bookingCalendar.repositories.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -20,6 +16,7 @@ public class GuestController {
   @Autowired
   private GuestRepository repository;
 
+  @CrossOrigin(origins = "http://localhost:8090")
   @RequestMapping(value="/guests", method=RequestMethod.GET)
   public @ResponseBody String index() {
     try {

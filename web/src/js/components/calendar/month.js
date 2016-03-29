@@ -2,12 +2,15 @@ import React from 'react';
 import Day from './day';
 import moment from 'moment';
 import dayActions from '../../actions/day-actions';
+import guestActions from '../../actions/guest-actions';
 import DayModal from './day-modal';
 
 export default class Month extends React.Component {
 
   componentDidMount() {
+    guestActions.getGuests();
     dayActions.getDays();
+
     this.state = {showModal: false};
   }
 
@@ -23,7 +26,7 @@ export default class Month extends React.Component {
       }
       return (
         <div key={i} className={`col-xs-7 col-sm-1 ${i===0 ? firstDayOffset : ''}`}>
-          <Day day={day} editHandler={this.showModal.bind(this)}/>
+          <Day day={day} editHandler={this.showModal.bind(this)} />
         </div>
       );
     });
@@ -35,7 +38,6 @@ export default class Month extends React.Component {
   }
 
   showModal(day) {
-    console.log('showModal', day);
     this.setState({showModal: true, day: day})
   }
 
@@ -45,7 +47,8 @@ export default class Month extends React.Component {
 
   renderModal() {
     if (this.state && this.state.showModal) {
-      return <DayModal day={this.state.day} onHide={this.hideModal.bind(this)} onSave={this.saveDay.bind(this)}/>;
+      return <DayModal day={this.state.day} onHide={this.hideModal.bind(this)} onSave={this.saveDay.bind(this)}
+                       guests={this.props.guests} />;
     }
   }
 
