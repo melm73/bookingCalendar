@@ -40,8 +40,67 @@ export default class DayModal extends React.Component {
     this.props.onSave(this.state);
   }
 
+  unbookedGuests() {
+    let guests = [];
+    if (this.state.bookings && this.state.bookings.length > 0) {
+      Object.keys(this.props.guests).forEach(id => {
+        let booked = this.state.bookings.includes(id);
+        if (!this.state.bookings.includes(id)) {
+          guests.push(this.props.guests[id]);
+        }
+      });
+    } else {
+      guests = Object.values(this.props.guests);
+    }
+
+    return guests;
+  }
+
+  selectGuest(e) {
+    let bookings = this.state.bookings;
+    if (!bookings) {
+      bookings = [];
+    }
+    bookings.push(e.target.value);
+    this.setState({bookings: bookings});
+  }
+
+  removeBooking(id) {
+    let bookings = this.state.bookings.filter(bookingId => bookingId !== id);
+    this.setState({bookings: bookings});
+  }
+
+  renderGuests() {
+    let bookings;
+    if (this.state.bookings && this.state.bookings.length > 0) {
+      bookings = this.state.bookings.map((id, index) => {
+        return (
+          <div className="booking" key={id}>
+            <span>{this.props.guests[id].name}</span>
+            <span onClick={this.removeBooking.bind(this, id)}>x</span>
+          </div>
+        );
+      });
+    } else {
+      bookings = 'No Bookings';
+    }
+    return bookings;
+  }
+
+  renderGuestOptions() {
+    return this.unbookedGuests().map(guest => <option key={guest.id} value={guest.id}>{guest.name}</option>)
+  }
+
+  renderGuestSelect() {
+    return (
+      <select id="guests" className="form-control" value="" onChange={this.selectGuest.bind(this)}>
+        <option value="">Please Select...</option>
+        {this.renderGuestOptions()}
+      </select>
+    );
+  }
+
   render() {
-    console.log(this.props.guests);
     let date = moment([this.props.day.year, this.props.day.month - 1, 1]);
 
     return (
@@ -88,12 +147,10 @@ export default class DayModal extends React.Component {
             <form className="form-horizontal col-xs-3">
               <div className="form-group">
                 <label htmlFor="guests">Add Guests</label>
-                <select id="guests" className="form-control">
-                  <option>Melanie</option>
-                  <option>Paul</option>
-                  <option>Felicity</option>
-                  <option>Samantha</option>
-                </select>
+                {this.renderGuestSelect()}
+              </div>
+              <div className="form-group">
+                {this.renderGuests()}
               </div>
             </form>
           </div>

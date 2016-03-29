@@ -25,7 +25,7 @@ public class Day {
   private String publicHoliday;
   private boolean schoolHoliday;
   private String notes;
-  private Guest[] bookings;
+  private String[] bookings;
 
   @JsonCreator
   public Day(
@@ -34,7 +34,8 @@ public class Day {
       @JsonProperty("year") int year,
       @JsonProperty("publicHoliday") String publicHoliday,
       @JsonProperty("schoolHoliday") boolean schoolHoliday,
-      @JsonProperty("notes") String notes) {
+      @JsonProperty("notes") String notes,
+      @JsonProperty("bookings") String[] bookings) {
     this.id =  new ObjectId().toString();
     this.day = day;
     this.month = month;
@@ -42,7 +43,7 @@ public class Day {
     this.publicHoliday = publicHoliday;
     this.schoolHoliday = schoolHoliday;
     this.notes = notes;
-    this.bookings = new Guest[0];
+    this.bookings = bookings;
   }
 
   public String getId() {
@@ -85,7 +86,11 @@ public class Day {
     this.notes = notes;
   }
 
-  public Guest[] getBookings() {
+  public String[] getBookings() {
     return this.bookings;
+  }
+
+  public void setBookings(String[] bookings) {
+    this.bookings = bookings;
   }
 }

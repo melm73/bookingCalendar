@@ -26,7 +26,7 @@ export default class Month extends React.Component {
       }
       return (
         <div key={i} className={`col-xs-7 col-sm-1 ${i===0 ? firstDayOffset : ''}`}>
-          <Day day={day} editHandler={this.showModal.bind(this)} />
+          <Day day={day} editHandler={this.showModal.bind(this)} guests={this.props.guests}/>
         </div>
       );
     });

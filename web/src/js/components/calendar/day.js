@@ -13,12 +13,25 @@ export default class Day extends React.Component {
     this.props.editHandler(this.props.day);
   }
 
+  renderBookings() {
+    if (this.props.day.bookings) {
+      return this.props.day.bookings.map(id => {
+        return <div className="booking" key={id}>{this.props.guests[id].name}</div>;
+      });
+    }
+  }
+
   render() {
     return (
       <div className={`day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`} onClick={this.clickHandler.bind(this)}>
         <row>
           <div className="day-number col-xs-2">{this.props.day.day}</div>
           <div className="day-description col-xs-5">{this.props.day.publicHoliday}</div>
+        </row>
+        <row>
+          <div className="col-xs-7">
+            {this.renderBookings()}
+          </div>
         </row>
         <row>
           <div className="col-xs-7">
