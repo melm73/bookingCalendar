@@ -2,6 +2,7 @@ import React from 'react';
 import Day from './day';
 import moment from 'moment';
 import dayActions from '../../actions/day-actions';
+import dayModalActions from '../../actions/day-modal-actions';
 import guestActions from '../../actions/guest-actions';
 import DayModal from './day-modal';
 
@@ -10,46 +11,45 @@ export default class Month extends React.Component {
   componentDidMount() {
     guestActions.getGuests();
     dayActions.getDays();
-
-    this.state = {showModal: false};
   }
 
-  renderDays(month, year) {
-    let calendarMonth = moment([year, month-1, 1]);
-    let daysInMonth = calendarMonth.daysInMonth();
-    let firstDayOffset = `col-sm-offset-${(calendarMonth.day() + 6) % 7}`;
-
+  days(firstDayOffset, daysInMonth) {
     return Array(daysInMonth).fill().map((_, i) => {
       let day = this.props.days[(i+1).toString()];
       if (!day) {
-        day = {day: i + 1, month: month, year: year};
+        day = {day: i + 1, month: this.props.month, year: this.props.year};
       }
       return (
-        <div key={i} className={`col-xs-7 col-sm-1 ${i===0 ? firstDayOffset : ''}`}>
-          <Day day={day} editHandler={this.showModal.bind(this)} guests={this.props.guests}/>
+        <div key={i} className={`col-xs-7 col-sm-1 ${i===0 ? `col-sm-offset-${firstDayOffset}` : ''}`}>
+          <Day day={day} guests={this.props.guests}/>
         </div>
       );
     });
   }
 
-  saveDay(day) {
-    dayActions.saveDay(day);
-    this.hideModal();
+  weeks(firstDayOffset, daysInMonth, dayDivs) {
+    let rows = [];
+    for (let i=-firstDayOffset; i < daysInMonth; i+=7) {
+      rows.push(
+        <div key={i} className="row">
+          {dayDivs.slice(Math.max(i, 0), Math.min(i + 7, daysInMonth))}
+        </div>
+      )
+    }
+    return rows;
   }
 
-  showModal(day) {
-    this.setState({showModal: true, day: day})
-  }
+  renderWeeks() {
+    let calendarMonth = moment([this.props.year, this.props.month-1, 1]);
+    let daysInMonth = calendarMonth.daysInMonth();
+    let firstDayOffset = (calendarMonth.day() + 6) % 7;
 
-  hideModal() {
-    this.setState({showModal: false});
+    let days = this.days(firstDayOffset, daysInMonth);
+    return this.weeks(firstDayOffset, daysInMonth, days);
   }
 
   renderModal() {
-    if (this.state && this.state.showModal) {
-      return <DayModal day={this.state.day} onHide={this.hideModal.bind(this)} onSave={this.saveDay.bind(this)}
-                       guests={this.props.guests} />;
-    }
+    return <DayModal modalState={this.props.modalState} guests={this.props.guests} />;
   }
 
   render() {
@@ -64,9 +64,7 @@ export default class Month extends React.Component {
           <div className="day-heading col-xs-1">Saturday</div>
           <div className="day-heading col-xs-1">Sunday</div>
         </div>
-        <div className="row">
-          {this.renderDays(this.props.month, this.props.year)}
-        </div>
+        {this.renderWeeks()}
         {this.renderModal()}
       </div>
     );

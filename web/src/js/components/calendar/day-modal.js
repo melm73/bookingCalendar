@@ -2,12 +2,15 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import moment from 'moment';
 import guestActions from '../../actions/guest-actions';
+import dayModalActions from '../../actions/day-modal-actions';
+import dayActions from '../../actions/day-actions';
 import PublicHolidayInput from './public-holiday-input';
 import BookingsForm from './bookings-form';
 
 export default class DayModal extends React.Component {
   componentWillMount() {
-    this.state = Object.assign({}, this.props.day);
+    this.state = Object.assign({}, this.props.modalState.day);
+    console.log('dayModal state', this.state);
   }
 
   checkSchoolHoliday(e) {
@@ -27,12 +30,17 @@ export default class DayModal extends React.Component {
     this.setState({bookings: bookings});
   }
 
-  save() {
-    this.props.onSave(this.state);
+  hideModal() {
+    dayModalActions.closeModal();
+  }
+
+  saveDay() {
+    dayActions.saveDay(this.state);
+    this.hideModal();
   }
 
   renderTitle() {
-    let date = moment([this.props.day.year, this.props.day.month - 1, 1]);
+    let date = moment([this.props.modalState.day.year, this.props.modalState.day.month - 1, 1]);
     return (
       <Modal.Title>
         <div className='day-number pull-left'>{this.state.day}</div>
@@ -74,14 +82,18 @@ export default class DayModal extends React.Component {
 
   renderButtons() {
     return [
-      <Button onClick={this.props.onHide}>Cancel</Button>,
+      <Button onClick={this.hideModal}>Cancel</Button>,
       <Button onClick={this.save.bind(this)}>Save</Button>
       ];
   }
 
   render() {
+    if (!this.props.modalState.show) {
+      return <div />;
+    }
+
     return (
-      <Modal show onHide={this.props.onHide}>
+      <Modal show={this.props.modalState.show} onHide={this.hideModal}>
         <Modal.Header closeButton>
           {this.renderTitle()}
         </Modal.Header>
@@ -97,7 +109,5 @@ export default class DayModal extends React.Component {
 }
 
 DayModal.propTypes = {
-  day: React.PropTypes.object.isRequired,
-  onHide: React.PropTypes.func.isRequired,
-  onSave: React.PropTypes.func.isRequired
+  guests: React.PropTypes.object.isRequired
 };

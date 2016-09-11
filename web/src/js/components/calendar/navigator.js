@@ -6,11 +6,11 @@ export default function Navigator(props) {
   return (
     <div className='navigator row'>
       <div className='arrow-left col-xs-1'>
-        <i className="fa fa-4x fa-angle-double-left" onClick={leftClick} />
+        <i className="fa fa-4x fa-angle-double-left" onClick={leftClick}>x</i>
       </div>
       <div className='title col-xs-5'>{renderMonth(props.month, props.year)}</div>
       <div className='arrow-right col-xs-1'>
-        <i className="fa fa-4x fa-angle-double-right" onClick={rightClick} />
+        <i className="fa fa-4x fa-angle-double-right" onClick={rightClick}>x</i>
       </div>
     </div>
   );

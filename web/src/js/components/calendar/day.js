@@ -1,6 +1,8 @@
 import React from 'react';
+import dayModalActions from '../../actions/day-modal-actions';
 
 export default class Day extends React.Component {
+
   schoolHolidayClass() {
     return this.props.day.schoolHoliday ? 'school-holiday' : ''
   }
@@ -9,8 +11,8 @@ export default class Day extends React.Component {
     return this.props.day.publicHoliday ? 'public-holiday' : ''
   }
 
-  clickHandler() {
-    this.props.editHandler(this.props.day);
+  editDay() {
+    dayModalActions.showModal(this.props.day);
   }
 
   renderBookings() {
@@ -23,7 +25,8 @@ export default class Day extends React.Component {
 
   render() {
     return (
-      <div className={`day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`} onClick={this.clickHandler.bind(this)}>
+      <div className={`day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`}
+           onClick={this.editDay.bind(this)}>
         <row>
           <div className="day-number col-xs-2">{this.props.day.day}</div>
           <div className="day-description col-xs-5">{this.props.day.publicHoliday}</div>
