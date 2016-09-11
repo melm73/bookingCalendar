@@ -64,5 +64,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="org.codehaus.jackson:jackson-mapper-asl:1.9.11" level="project" />
     <orderEntry type="library" name="org.apache.clerezza.ext:org.json.simple:0.4" level="project" />
+    <orderEntry type="library" name="scala-sdk-2.11.8" level="application" />
   </component>
 </module>
