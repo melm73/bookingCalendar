@@ -4,13 +4,14 @@ import calendar
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
 from flask_restful import Resource
-from werkzeug.exceptions import BadRequest
 from settings import CALENDAR_URL
+from lib.request_validator import RequestValidator
 
 
 class MonthController(Resource):
     def get(self, year, month):
-        self.validate_args(year, month)
+        RequestValidator().validate_month(year, month)
+
         try:
             return json.load(urlopen(self.calendar_file_name(month, year)))
 
@@ -26,7 +27,3 @@ class MonthController(Resource):
 
     def calendar_file_name(self, month, year):
         return CALENDAR_URL + f"{year}_{calendar.month_name[month]}.json"
-
-    def validate_args(self, year, month):
-        if month < 1 or month > 12:
-            raise BadRequest({ 'month': 'Month must be between 1 and 12' })
