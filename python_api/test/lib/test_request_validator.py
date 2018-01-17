@@ -20,3 +20,19 @@ class TestRequestValidator(unittest.TestCase):
 
         with self.assertRaises(BadRequest):
             self.validator.validate_month(2011, 13)
+
+    def test_raises_no_exception_for_valid_month_year_and_day(self):
+        self.validator.validate_day(2011, 12, 10)
+
+    def test_raises_error_for_invalid_days(self):
+        with self.assertRaises(BadRequest):
+            self.validator.validate_day(2011, 12, 0)
+
+        with self.assertRaises(BadRequest):
+            self.validator.validate_day(2011, 12, 32)
+
+        with self.assertRaises(BadRequest):
+            self.validator.validate_day(2011, 11, 31)
+
+        with self.assertRaises(BadRequest):
+            self.validator.validate_day(2011, 0, 15)
