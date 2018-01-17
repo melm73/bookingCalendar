@@ -4,6 +4,7 @@ from lib.file_reader import FileReader
 
 
 class MonthController(Resource):
+    @staticmethod
     def get(self, year, month):
         RequestValidator().validate_month(year, month)
         return FileReader(year, month).read_file()
