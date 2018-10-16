@@ -3,7 +3,7 @@
 target/
 npm-debug.log
 
-web/node_modules
+node_modules
 
 calendar/
 
