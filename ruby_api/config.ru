@@ -2,4 +2,4 @@
 require 'rack'
 load 'application.rb'
 
-run Application.run!
+run Application.new
