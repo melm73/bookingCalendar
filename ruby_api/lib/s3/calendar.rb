@@ -15,6 +15,14 @@ module S3
       empty_calendar
     end
 
+    def write(year:, month:, json:)
+      @client.put_object({
+        body: json,
+        bucket: BUCKET_NAME,
+        key: file_name(year, month),
+      })
+    end
+
     private
 
     def file_name(year, month)
