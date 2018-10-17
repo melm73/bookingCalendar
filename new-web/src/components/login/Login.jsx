@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+import './Login.css';
+import LoginForm from './LoginForm';
 
 class Login extends Component {
   render() {
     return (
-      <div className="Login">
-        Login Page
+      <div className="login">
+        <div className="row no-gutters">
+          <div className="col-md-3 col-md-offset-3 banner">
+            <img src={'images/login_banner.jpg'} />
+          </div>
+          <div className="col-md-3 form">
+            <LoginForm />
+          </div>
+        </div>
       </div>
     );
   }
