@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from './action-types'
+import { LOGIN_SUCCESS, LOGIN_FAILURE } from './action-types'
 import store from '../reducers/store';
 
 export function loginSuccess() {
@@ -7,4 +7,12 @@ export function loginSuccess() {
 
 export function loginFailure() {
   store.dispatch({ type: LOGIN_FAILURE });
+}
+
+export function login() {
+	loginSuccess();
+}
+
+export function logout() {
+	loginFailure();
 }

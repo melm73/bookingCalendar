@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
+// import { Redirect } from 'react-router';
 import './LoginForm.css';
+import { login } from '../../actions/authentication-actions';
 
 class LoginForm extends Component {
+  onClick = () => {
+    console.log('LoginForm.login');
+    console.log(this.props);
+    login();
+  };
+
   render() {
+    console.log('LoginForm.render');
+    console.log('props', this.props);
+
     return (
       <div id="login-form">
         <h1>Login</h1>
-        <form>
+        <div>
           <div className="form-group">
-            <label for="inputUsername">Username</label>
+            <label htmlFor="inputUsername">Username</label>
             <input type="text" className="form-control" id="inputUsername" placeholder="Username" />
           </div>
           <div className="form-group">
-            <label for="inputPassword">Password</label>
+            <label htmlFor="inputPassword">Password</label>
             <input type="password" className="form-control" id="inputPassword" placeholder="Password" />
           </div>
-          <button type="submit" className="btn btn-outline-primary">Login</button>
-        </form>
+          <button className="btn btn-outline-primary" onClick={this.onClick}>Login</button>
+        </div>
       </div>
     );
   }
 }
 
 export default LoginForm;
+
