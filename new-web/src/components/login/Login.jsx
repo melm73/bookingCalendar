@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import './Login.css';
-import LoginForm from './LoginForm';
+import './login.css';
+import LoginForm from './login-form';
 
 class Login extends Component {
   static contextTypes = {

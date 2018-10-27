@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './app.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import PrivateRoute from './private-route';
 import Calendar from './calendar/Calendar';
-import Login from  './login/Login';
+import Login from  './login/login';
 import { Provider } from 'react-redux';
 import store from '../reducers/store';
 import requireAuth from './require-auth';

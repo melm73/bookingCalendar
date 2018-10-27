@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router';
-import './LoginForm.css';
+import './login-form.css';
 import { login } from '../../actions/authentication-actions';
 
 class LoginForm extends Component {
