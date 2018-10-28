@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import store from '../reducers/store';
 import requireAuth from './require-auth';
 
-const Report = () => <h3>Report</h3>;
-
 class App extends Component {
   render() {
     return (

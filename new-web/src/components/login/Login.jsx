@@ -15,6 +15,17 @@ class Login extends Component {
     }
   }
 
+  renderErrorMessage() {
+    if (this.props.errorMessage) {
+      return (
+        <div className='error-message'>
+          {this.props.errorMessage}
+        </div>
+      );
+    }
+    return undefined;
+  }
+
   render() {
     return (
       <div className="login">
@@ -24,6 +35,7 @@ class Login extends Component {
           </div>
           <div className="col-md-3 form">
             <LoginForm />
+            {this.renderErrorMessage()}
           </div>
         </div>
       </div>
@@ -33,7 +45,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
+    errorMessage: state.notifications.errorMessage
   }
 };
 

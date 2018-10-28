@@ -27,3 +27,9 @@
     padding-right: 0;
     padding-left: 0;
 }
+
+.error-message {
+    padding-left: 22px;
+    color: red;
+    font-weight: bold
+}

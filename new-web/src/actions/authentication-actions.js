@@ -1,18 +1,34 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE } from './action-types'
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from './action-types';
+import { resetMessages } from './notification-actions';
 import store from '../reducers/store';
 
-export function loginSuccess() {
+function loginSuccess() {
   store.dispatch({ type: LOGIN_SUCCESS });
 }
 
-export function loginFailure() {
+function loginFailure() {
   store.dispatch({ type: LOGIN_FAILURE });
 }
 
-export function login() {
-	loginSuccess();
+function backendLogin(username, password) {
+  console.log('backendLogin', username, password);
+  if (password === undefined) {
+    return false;
+  }
+  return true;
+}
+
+export function login(username, password) {
+  resetMessages();
+
+  if (backendLogin(username, password)) {
+    loginSuccess();
+  } else {
+    loginFailure();
+  }
 }
 
 export function logout() {
-	loginFailure();
+  resetMessages();
+  store.dispatch({ type: LOGOUT });
 }
