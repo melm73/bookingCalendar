@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Calendar from './calendar/Calendar';
+import Calendar from './calendar/calendar';
 import Login from  './login/login';
 import { Provider } from 'react-redux';
 import store from '../reducers/store';

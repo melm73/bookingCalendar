@@ -4,3 +4,6 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
 
 export const MESSAGE_RESET = 'MESSAGE_RESET';
+
+export const NEXT_MONTH = 'NEXT_MONTH';
+export const PREVIOUS_MONTH = 'PREVIOUS_MONTH';
