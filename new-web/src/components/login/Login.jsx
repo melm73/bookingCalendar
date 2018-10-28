@@ -46,7 +46,7 @@ class Login extends Component {
 const mapStateToProps = state => {
   return {
     authenticated: state.authenticated,
-    errorMessage: state.notifications.errorMessage
+    errorMessage: state.notifications.get('errorMessage')
   }
 };
 
