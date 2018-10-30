@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import Header from './header';
-import Navigator from './navigator';
+import Header from './header.jsx';
+import Navigator from './navigator.jsx';
 // import Month from './month';
 // import { getDays } from '../../api/day-api';
 

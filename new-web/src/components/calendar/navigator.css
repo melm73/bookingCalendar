@@ -1,0 +1,9 @@
+.navigator .title {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 36px;
+  text-align: center;
+}
+
+.navigator .arrow-left {
+  text-align: right;
+}

@@ -13,7 +13,7 @@ class App extends Component {
       <div className="container">
         <Provider store={store}>
           <BrowserRouter>
-            <div className="container">
+            <div>
               <Route exact path="/" component={Login} />
               <Route path="/app" component={requireAuth(Calendar)} />
             </div>

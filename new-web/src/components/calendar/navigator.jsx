@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './navigator.css';
 import moment from 'moment';
 import monthActions from '../../actions/month-actions';
 
 export default function Navigator(props) {
   return (
     <div className='navigator row'>
-      <div className='arrow-left col-xs-1'>
-        <i className="fa fa-4x fa-angle-double-left" onClick={leftClick}>x</i>
+      <div className='arrow-left col-xs-4'>
+        <i className="fa fa-4x fa-angle-double-left" onClick={leftClick} />
       </div>
-      <div className='title col-xs-5'>{renderMonth(props.month, props.year)}</div>
-      <div className='arrow-right col-xs-1'>
-        <i className="fa fa-4x fa-angle-double-right" onClick={rightClick}>x</i>
+      <div className='title col-xs-4'>{renderMonth(props.month, props.year)}</div>
+      <div className='arrow-right col-xs-4'>
+        <i className="fa fa-4x fa-angle-double-right" onClick={rightClick} />
       </div>
     </div>
   );
