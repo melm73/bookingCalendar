@@ -29,11 +29,11 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <div className="row no-gutters">
-          <div className="col-md-3 col-md-offset-3 banner">
+        <div className="row no-gutters justify-content-center">
+          <div className="col-sm-3 banner">
             <img src={'images/login_banner.jpg'} alt="" />
           </div>
-          <div className="col-md-3 form">
+          <div className="col-sm-3 form">
             <LoginForm />
             {this.renderErrorMessage()}
           </div>
