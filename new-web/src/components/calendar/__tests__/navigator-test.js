@@ -23,7 +23,6 @@ describe('Navigator', () => {
       it('calls the next month action', () => {
         spyOn(monthActions, 'nextMonth');
         let clickHandler = navigator.childAt(2).find('i').prop('onClick');
-        console.log(clickHandler);
         clickHandler();
         expect(monthActions.nextMonth).toHaveBeenCalled();
       });
@@ -33,7 +32,6 @@ describe('Navigator', () => {
       it('calls the previous month action', () => {
         spyOn(monthActions, 'previousMonth');
         let clickHandler = navigator.childAt(0).find('i').prop('onClick');
-        console.log(clickHandler);
         clickHandler();
         expect(monthActions.previousMonth).toHaveBeenCalled();
       });

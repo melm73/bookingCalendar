@@ -1,0 +1,27 @@
+.day-heading {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.row {
+  padding-left: 1px;
+}
+
+
+.day {
+  background-color: white;
+  margin-top: 2px;
+  overflow: auto;
+  min-height: 80px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.blank-day {
+  background-color: gray;
+}

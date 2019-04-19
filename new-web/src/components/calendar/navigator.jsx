@@ -6,13 +6,13 @@ import monthActions from '../../actions/month-actions';
 
 export default function Navigator(props) {
   return (
-    <div className='navigator row'>
+    <div className='navigator row no-gutters'>
       <div className='arrow-left col-4'>
-        <i className="fa fa-4x fa-angle-double-left" onClick={leftClick} />
+        <i className="fa fa-3x fa-angle-double-left" onClick={leftClick} />
       </div>
       <div className='title col-4'>{renderMonth(props.month, props.year)}</div>
       <div className='arrow-right col-4'>
-        <i className="fa fa-4x fa-angle-double-right" onClick={rightClick} />
+        <i className="fa fa-3x fa-angle-double-right" onClick={rightClick} />
       </div>
     </div>
   );
