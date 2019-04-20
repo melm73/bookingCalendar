@@ -9,6 +9,6 @@ export const loadDays = () => {
   let state = store.getState().calendarMonth.toJS();
 
   return getDays(state.month, state.year).then((days) => {
-	  store.dispatch({type: SET_DAYS, days: days});
+    store.dispatch({type: SET_DAYS, days: days});
   });
 }

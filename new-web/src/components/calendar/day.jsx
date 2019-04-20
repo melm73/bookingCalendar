@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 export default class Day extends React.Component {
 
   schoolHolidayClass() {
-    return this.props.day.schoolHoliday ? 'school-holiday' : ''
+    return this.props.attributes.schoolHoliday ? 'school-holiday' : ''
   }
 
   publicHolidayClass() {
-    return this.props.day.publicHoliday ? 'public-holiday' : ''
+    return this.props.attributes.publicHoliday ? 'public-holiday' : ''
   }
 
   editDay() {
@@ -17,8 +17,8 @@ export default class Day extends React.Component {
   }
 
   renderBookings() {
-    if (this.props.day.bookings) {
-      return this.props.day.bookings.map(id => {
+    if (this.props.attributes.bookings) {
+      return this.props.attributes.bookings.map(id => {
         return <div className="booking" key={id}>{this.props.guests[id].name}</div>;
       });
     }
@@ -29,8 +29,8 @@ export default class Day extends React.Component {
       <div className={`day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`}
            onClick={this.editDay.bind(this)}>
         <div>
-          <div className="day-number col-xs-2">{this.props.day.day}</div>
-          <div className="day-description col-xs-5">{this.props.day.publicHoliday}</div>
+          <div className="day-number col-xs-2">{this.props.day}</div>
+          <div className="day-description col-xs-5">{this.props.attributes.public_holiday}</div>
         </div>
         <div>
           <div className="col-xs-7">
@@ -39,7 +39,7 @@ export default class Day extends React.Component {
         </div>
         <div>
           <div className="col-xs-7">
-            {this.props.day.notes}
+            {this.props.attributes.notes}
           </div>
         </div>
       </div>
@@ -48,9 +48,10 @@ export default class Day extends React.Component {
 }
 
 Day.propTypes = {
-  day: PropTypes.shape({
+  day: PropTypes.number.isRequired,
+  attributes: PropTypes.shape({
     schoolHoliday: PropTypes.bool,
-    publicHoliday: PropTypes.string,
+    public_holiday: PropTypes.string,
     description: PropTypes.string
   }).isRequired
 };

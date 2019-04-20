@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './month.css';
 import Day from './day';
+import BlankDay from './blank-day';
+
 import { loadDays } from '../../actions/day-actions';
 // import dayModalActions from '../../actions/day-modal-actions';
 // import DayModal from './day-modal';
@@ -13,16 +15,14 @@ export default class Month extends React.Component {
     loadDays();
   }
 
-  day = (i, day) => (
+  day = (i, day, attrs) => (
     <div key={i} className="col">
-      <Day day={day} guests={this.props.guests} />
+      <Day day={day} attributes={attrs} />
     </div>
   );
 
   blankDay = (i) => (
-    <div key={i} className="col blank">
-      <div className="day blank-day" />
-    </div>
+    <BlankDay key={i} />
   );
 
   days(firstDayOffset, daysInMonth) {
@@ -31,11 +31,11 @@ export default class Month extends React.Component {
     });
 
     let monthDays = Array(daysInMonth).fill().map((_, i) => {
-      let day = this.props.days[(i+1).toString()];
-      if (!day) {
-        day = {};
+      let attrs = this.props.days[(i+1)];
+      if (!attrs) {
+        attrs = {};
       }
-      return this.day(i + firstDayOffset, day);
+      return this.day(i + firstDayOffset, i+1, attrs);
     });
 
     let lastRow = (firstDayOffset + daysInMonth) % 7;
