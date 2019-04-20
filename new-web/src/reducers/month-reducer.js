@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import moment from 'moment';
-import { NEXT_MONTH, PREVIOUS_MONTH } from '../actions/action-types';
+import { NEXT_MONTH, PREVIOUS_MONTH, CURRENT_MONTH } from '../actions/action-types';
 
 const initialState = Map({
   month: moment().month() + 1,
@@ -13,6 +13,8 @@ export default function reducer(state = initialState, action = {}) {
       return nextMonth(state);
     case PREVIOUS_MONTH:
       return previousMonth(state);
+    case CURRENT_MONTH:
+      return currentMonth(state);
     default:
       return state
   }
@@ -32,4 +34,8 @@ function previousMonth(state) {
   } else {
     return state.set('month', state.get('month') - 1);
   }
+}
+
+function currentMonth(state) {
+  return initialState;
 }

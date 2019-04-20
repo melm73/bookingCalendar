@@ -6,21 +6,18 @@ import monthActions from '../../actions/month-actions';
 
 export default function Navigator(props) {
   return (
-    <div className='navigator row no-gutters'>
-      <div className='arrow-left col-4'>
-        <i className="fa fa-3x fa-angle-double-left" onClick={leftClick} />
-      </div>
-      <div className='title col-4'>{renderMonth(props.month, props.year)}</div>
-      <div className='arrow-right col-4'>
-        <i className="fa fa-3x fa-angle-double-right" onClick={rightClick} />
-      </div>
+    <div className='navigator no-gutters'>
+      <div className='today' onClick={todayClick}><button>Today</button></div>
+      <div className='arrow-left' onClick={leftClick}><button>&lt;</button></div>
+      <div className='arrow-right' onClick={rightClick}><button>&gt;</button></div>
+      <div className='title'>{renderMonth(props.month, props.year)}</div>
     </div>
   );
 }
 
 function renderMonth(month, year) {
   let date = moment([year, month - 1, 1]);
-  return date.format('MMMM YYYY');
+  return date.format('MMMM YYYY').toUpperCase();
 }
 
 function leftClick() {
@@ -29,6 +26,10 @@ function leftClick() {
 
 function rightClick() {
   monthActions.nextMonth();
+}
+
+function todayClick() {
+  monthActions.currentMonth();
 }
 
 Navigator.propTypes = {

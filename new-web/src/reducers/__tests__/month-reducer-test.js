@@ -40,4 +40,15 @@ describe('reducer', () => {
       expect(state.get('year')).toEqual(2015);
     });
   });
+
+
+  describe('CURRENT_MONTH', () => {
+    it('sets current month', () => {
+      let initialState = fromJS({month: 11, year: 2015});
+      let state = reducer(initialState, {type: 'CURRENT_MONTH'});
+
+      expect(state.get('month')).toEqual(moment().month() + 1);
+      expect(state.get('year')).toEqual(moment().year());
+    });
+  });
 });

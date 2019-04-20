@@ -23,4 +23,12 @@ describe('monthActions', () => {
       expect(dayActions.loadDays).toHaveBeenCalled();
     });
   });
+
+  describe('currentMonth', () => {
+    it('dispatches the action to the store', () => {
+      monthActions.currentMonth();
+      expect(store.dispatch).toHaveBeenCalledWith({type: 'CURRENT_MONTH'});
+      expect(dayActions.loadDays).toHaveBeenCalled();
+    });
+  });
 });
