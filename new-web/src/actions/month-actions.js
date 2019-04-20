@@ -1,16 +1,16 @@
 import store from '../reducers/store';
-import { getDaysForMonth } from './day-actions';
+import { loadDays } from './day-actions';
 
 export class MonthActions {
 
   nextMonth() {
     store.dispatch({type: 'NEXT_MONTH'});
-    getDaysForMonth();
+    loadDays();
   }
 
   previousMonth() {
     store.dispatch({type: 'PREVIOUS_MONTH'});
-    getDaysForMonth();
+    loadDays();
   }
 }
 

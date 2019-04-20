@@ -5,14 +5,14 @@ import * as dayActions from '../day-actions';
 describe('monthActions', () => {
   beforeEach(() => {
     spyOn(store, 'dispatch');
-    spyOn(dayActions, 'getDaysForMonth');
+    spyOn(dayActions, 'loadDays');
   });
 
   describe('nextMonth', () => {
     it('dispatches the action to the store', () => {
       monthActions.nextMonth();
       expect(store.dispatch).toHaveBeenCalledWith({type: 'NEXT_MONTH'});
-      expect(dayActions.getDaysForMonth).toHaveBeenCalled();
+      expect(dayActions.loadDays).toHaveBeenCalled();
     });
   });
 
@@ -20,7 +20,7 @@ describe('monthActions', () => {
     it('dispatches the action to the store', () => {
       monthActions.previousMonth();
       expect(store.dispatch).toHaveBeenCalledWith({type: 'PREVIOUS_MONTH'});
-      expect(dayActions.getDaysForMonth).toHaveBeenCalled();
+      expect(dayActions.loadDays).toHaveBeenCalled();
     });
   });
 });

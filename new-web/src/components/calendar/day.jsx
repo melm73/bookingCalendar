@@ -49,10 +49,6 @@ export default class Day extends React.Component {
 
 Day.propTypes = {
   day: PropTypes.shape({
-    id: PropTypes.string,
-    day: PropTypes.number.isRequired,
-    month: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired,
     schoolHoliday: PropTypes.bool,
     publicHoliday: PropTypes.string,
     description: PropTypes.string

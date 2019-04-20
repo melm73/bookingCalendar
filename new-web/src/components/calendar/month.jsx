@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './month.css';
 import Day from './day';
-// import dayActions from '../../actions/day-actions';
+import { loadDays } from '../../actions/day-actions';
 // import dayModalActions from '../../actions/day-modal-actions';
-// import guestActions from '../../actions/guest-actions';
 // import DayModal from './day-modal';
 
 export default class Month extends React.Component {
 
   componentDidMount() {
-    // guestActions.getGuests();
-    // dayActions.getDays();
+    loadDays();
   }
-
 
   day = (i, day) => (
     <div key={i} className="col">
@@ -36,7 +33,7 @@ export default class Month extends React.Component {
     let monthDays = Array(daysInMonth).fill().map((_, i) => {
       let day = this.props.days[(i+1).toString()];
       if (!day) {
-        day = {day: i+1, month: this.props.month, year: this.props.year};
+        day = {};
       }
       return this.day(i + firstDayOffset, day);
     });
