@@ -4,10 +4,7 @@ import moment from 'moment';
 import './month.css';
 import Day from './day';
 import BlankDay from './blank-day';
-
 import { loadDays } from '../../actions/day-actions';
-// import dayModalActions from '../../actions/day-modal-actions';
-// import DayModal from './day-modal';
 
 export default class Month extends React.Component {
 
@@ -16,9 +13,7 @@ export default class Month extends React.Component {
   }
 
   day = (i, day, attrs) => (
-    <div key={i} className="col">
-      <Day day={day} attributes={attrs} />
-    </div>
+    <Day key={i} day={day} attributes={attrs} />
   );
 
   blankDay = (i) => (
@@ -72,20 +67,16 @@ export default class Month extends React.Component {
     return this.weeks(firstDayOffset, daysInMonth, days);
   }
 
-  renderModal() {
-    // return <DayModal modalState={this.props.modalState} guests={this.props.guests} />;
-  }
-
   renderHeadings() {
     return (
       <div className="row hidden-xs no-gutters">
-        <div className="col"><div className="day-heading">Monday</div></div>
-        <div className="col"><div className="day-heading">Tuesday</div></div>
-        <div className="col"><div className="day-heading">Wednesday</div></div>
-        <div className="col"><div className="day-heading">Thursday</div></div>
-        <div className="col"><div className="day-heading">Friday</div></div>
-        <div className="col"><div className="day-heading">Saturday</div></div>
-        <div className="col"><div className="day-heading">Sunday</div></div>
+        <div className="col heading"><div className="day-heading">MON</div></div>
+        <div className="col heading"><div className="day-heading">TUE</div></div>
+        <div className="col heading"><div className="day-heading">WED</div></div>
+        <div className="col heading"><div className="day-heading">THU</div></div>
+        <div className="col heading"><div className="day-heading">FRI</div></div>
+        <div className="col heading"><div className="day-heading">SAT</div></div>
+        <div className="col heading"><div className="day-heading">SUN</div></div>
       </div>
     );
   }
@@ -95,7 +86,6 @@ export default class Month extends React.Component {
       <div className="month">
         {this.renderHeadings()}
         {this.renderWeeks()}
-        {this.renderModal()}
       </div>
     );
   }
