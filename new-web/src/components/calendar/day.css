@@ -1,0 +1,49 @@
+.day {
+  background-color: white;
+  overflow: auto;
+  min-height: 80px;
+}
+
+.day:hover {
+  cursor: pointer;
+  background-color: #DAE3F5;
+}
+
+.title-row {
+  display: flex;
+  align-items: stretch;
+}
+
+.day-description {
+  font-size: 14px;
+  color: mediumpurple;
+  text-align: right;
+  flex-grow: 1;
+  padding-right: 3px;
+  padding-top: 2px;
+  font-style: italic;
+}
+
+.day-number {
+  padding-left: 3px;
+}
+
+.notes-row {
+  font-size: 14px;
+  font-style: italic;
+  color: #6D6E70;
+  padding-left: 3px;
+}
+
+.bookings-row {
+  padding-bottom: 10px;
+}
+
+.booking {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.school-holiday {
+  background-color: #ECF1FA;
+}

@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Booking from './booking';
+import './day.css';
+
 // import dayModalActions from '../../actions/day-modal-actions';
 
 export default class Day extends React.Component {
 
   schoolHolidayClass() {
-    return this.props.attributes.schoolHoliday ? 'school-holiday' : ''
+    return this.props.attributes.school_holiday ? 'school-holiday' : ''
   }
 
   publicHolidayClass() {
-    return this.props.attributes.publicHoliday ? 'public-holiday' : ''
+    return this.props.attributes.public_holiday ? 'public-holiday' : ''
   }
 
   editDay() {
@@ -18,29 +21,29 @@ export default class Day extends React.Component {
 
   renderBookings() {
     if (this.props.attributes.bookings) {
-      return this.props.attributes.bookings.map(id => {
-        return <div className="booking" key={id}>{this.props.guests[id].name}</div>;
-      });
+      let bookings = [];
+
+      Object.keys(this.props.attributes.bookings).forEach((key, idx) => {
+        bookings.push(<Booking key={key} guest={key} />);
+      }); 
+
+      return bookings;
     }
   }
 
   render() {
     return (
-      <div className={`day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`}
+      <div className={`col day ${this.schoolHolidayClass()} ${this.publicHolidayClass()}`}
            onClick={this.editDay.bind(this)}>
-        <div>
-          <div className="day-number col-xs-2">{this.props.day}</div>
-          <div className="day-description col-xs-5">{this.props.attributes.public_holiday}</div>
+        <div className='title-row'>
+          <div className="day-number">{this.props.day}</div>
+          <div className="day-description">{this.props.attributes.public_holiday}</div>
         </div>
-        <div>
-          <div className="col-xs-7">
-            {this.renderBookings()}
-          </div>
+        <div className='bookings-row'>
+          {this.renderBookings()}
         </div>
-        <div>
-          <div className="col-xs-7">
-            {this.props.attributes.notes}
-          </div>
+        <div className='notes-row'>
+          {this.props.attributes.notes}
         </div>
       </div>
     );

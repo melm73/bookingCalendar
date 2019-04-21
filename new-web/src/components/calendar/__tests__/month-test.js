@@ -39,7 +39,6 @@ describe('Month', () => {
 
       expect(secondRow.children().length).toEqual(7);
 
-      console.log(secondRow.childAt(0).type());
       expect(secondRow.childAt(0).type()).toEqual(BlankDay);
       expect(secondRow.childAt(1).type()).toEqual(Day);
     });
