@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './navigator.css';
 import moment from 'moment';
 import monthActions from '../../actions/month-actions';
+import { Link } from 'react-router-dom'
+
 
 export default function Navigator(props) {
   return (
@@ -11,6 +13,7 @@ export default function Navigator(props) {
       <div className='arrow-left' onClick={leftClick}><button>&lt;</button></div>
       <div className='arrow-right' onClick={rightClick}><button>&gt;</button></div>
       <div className='title'>{renderMonth(props.month, props.year)}</div>
+      <div className='reports-link'><Link to="/reports">Reports</Link></div>
     </div>
   );
 }
@@ -31,6 +34,10 @@ function rightClick() {
 function todayClick() {
   monthActions.currentMonth();
 }
+
+function navigateToReports() {
+
+};
 
 Navigator.propTypes = {
   month: PropTypes.number.isRequired,

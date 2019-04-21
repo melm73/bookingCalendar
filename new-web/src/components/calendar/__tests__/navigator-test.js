@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Navigator from '../navigator';
+import { Link } from 'react-router-dom'
 import monthActions from '../../../actions/month-actions';
 
 describe('Navigator', () => {
@@ -43,6 +44,13 @@ describe('Navigator', () => {
         let clickHandler = navigator.childAt(0).prop('onClick');
         clickHandler();
         expect(monthActions.currentMonth).toHaveBeenCalled();
+      });
+    });
+
+    describe('reports link', () => {
+      it('has a link to the reports page', () => {
+        let link = navigator.childAt(4).find(Link);
+        expect(link.prop('to')).toEqual('/reports');
       });
     });
   });
