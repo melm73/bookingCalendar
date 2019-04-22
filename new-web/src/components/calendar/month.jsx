@@ -13,7 +13,14 @@ export default class Month extends React.Component {
   }
 
   day = (i, day, attrs) => (
-    <Day key={i} day={day} attributes={attrs} />
+    <Day 
+      key={i} 
+      day={day} 
+      schoolHoliday={attrs.schoolHoliday}
+      publicHoliday={attrs.publicHoliday}
+      guests={attrs.guests}
+      notes={attrs.notes}
+    />
   );
 
   blankDay = (i) => (

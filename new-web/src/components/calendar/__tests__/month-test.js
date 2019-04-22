@@ -8,7 +8,7 @@ describe('Month', () => {
   let monthComponent, days, day11, day24, month, year;
 
   beforeEach(() => {
-    day11 = { school_holiday: true };
+    day11 = { schoolHoliday: true };
     day24 = { notes: 'my notes' };
     days = { '11': day11, '24': day24 };
     month = 3;
@@ -58,16 +58,16 @@ describe('Month', () => {
       let secondRow = monthComponent.childAt(1);
       let sixthRow = monthComponent.childAt(5);
 
-      expect(secondRow.childAt(1).prop('attributes')).toEqual({});
-      expect(sixthRow.childAt(3).prop('attributes')).toEqual({});
+      expect(secondRow.childAt(1).prop('notes')).toBeUndefined();
+      expect(sixthRow.childAt(3).prop('notes')).toBeUndefined();
     });
 
     it('passes the day objects to the correct days', () => {
       let thirdRow = monthComponent.childAt(2);
       let fifthRow = monthComponent.childAt(4);
 
-      expect(thirdRow.childAt(4).prop('attributes')).toEqual(day11);
-      expect(fifthRow.childAt(3).prop('attributes')).toEqual(day24);
+      expect(thirdRow.childAt(4).prop('schoolHoliday')).toEqual(true);
+      expect(fifthRow.childAt(3).prop('notes')).toEqual('my notes');
     });
   });
 });

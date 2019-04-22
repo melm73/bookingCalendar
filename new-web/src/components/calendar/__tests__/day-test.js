@@ -1,20 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Day from '../day';
-import Booking from '../booking';
 import Guest from '../guest';
 
 describe('Day', () => {
   let dayComponent;
-  const attrs = {
-  	public_holiday: 'Holiday Name',
-  	bookings: { 'kt': 1, 'mp': 1 },
-    guests: [{ name: 'Me', owner: true }, { name: 'You', owner: false }],
-  	notes: 'some notes'
-  }
+  const guests = [{ name: 'Me', owner: true }, { name: 'You', owner: false }];
 
   beforeEach(() => {
-  	dayComponent = shallow(<Day day={12} attributes={attrs} />);
+  	dayComponent = shallow(
+      <Day 
+        day={12}
+        schoolHoliday
+        publicHoliday='Holiday Name'
+        notes='some notes'
+        guests={guests}
+      />
+    );
   });
 
   it('has a day number', () => {
@@ -27,20 +29,8 @@ describe('Day', () => {
     expect(firstRow.childAt(1).text()).toEqual('Holiday Name');
   });
 
-  it('has bookings', () => {
-  	const secondRow = dayComponent.childAt(1);
-
-  	expect(secondRow.children().length).toEqual(2);
-
-  	expect(secondRow.childAt(0).type()).toEqual(Booking);
-  	expect(secondRow.childAt(0).prop('name')).toEqual('kt');
-  	
-  	expect(secondRow.childAt(1).type()).toEqual(Booking);
-  	expect(secondRow.childAt(1).prop('name')).toEqual('mp');
-  });
-
   it('has guests', () => {
-    const thirdRow = dayComponent.childAt(2);
+    const thirdRow = dayComponent.childAt(1);
 
     expect(thirdRow.children().length).toEqual(2);
 
@@ -54,7 +44,7 @@ describe('Day', () => {
   });
 
   it('has notes', () => {
-  	const fourthRow = dayComponent.childAt(3);
+  	const fourthRow = dayComponent.childAt(2);
     expect(fourthRow.text()).toEqual('some notes');
   });
 });

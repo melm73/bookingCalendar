@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Booking from './booking';
 import Guest from './guest';
 import './day.css';
 
@@ -9,32 +8,20 @@ import './day.css';
 export default class Day extends React.Component {
 
   schoolHolidayClass() {
-    return this.props.attributes.school_holiday ? 'school-holiday' : ''
+    return this.props.schoolHoliday ? 'school-holiday' : ''
   }
 
   publicHolidayClass() {
-    return this.props.attributes.public_holiday ? 'public-holiday' : ''
+    return this.props.publicHoliday ? 'public-holiday' : ''
   }
 
   editDay() {
     // dayModalActions.showModal(this.props.day);
   }
 
-  renderBookings() {
-    if (this.props.attributes.bookings) {
-      let bookings = [];
-
-      Object.keys(this.props.attributes.bookings).forEach((key, idx) => {
-        bookings.push(<Booking key={key} name={key} />);
-      }); 
-
-      return bookings;
-    }
-  }
-
   renderGuests() {
-    if (this.props.attributes.guests) {
-      return this.props.attributes.guests.map(guest => (
+    if (this.props.guests) {
+      return this.props.guests.map(guest => (
         <Guest key={guest.name} name={guest.name} owner={guest.owner} />
       )); 
     }
@@ -46,16 +33,13 @@ export default class Day extends React.Component {
            onClick={this.editDay.bind(this)}>
         <div className='title-row'>
           <div className="day-number">{this.props.day}</div>
-          <div className="day-description">{this.props.attributes.public_holiday}</div>
-        </div>
-        <div className='bookings-row'>
-          {this.renderBookings()}
+          <div className="day-description">{this.props.publicHoliday}</div>
         </div>
         <div className='guests-row'>
           {this.renderGuests()}
         </div>
         <div className='notes-row'>
-          {this.props.attributes.notes}
+          {this.props.notes}
         </div>
       </div>
     );
@@ -64,9 +48,8 @@ export default class Day extends React.Component {
 
 Day.propTypes = {
   day: PropTypes.number.isRequired,
-  attributes: PropTypes.shape({
-    schoolHoliday: PropTypes.bool,
-    public_holiday: PropTypes.string,
-    description: PropTypes.string
-  }).isRequired
+  schoolHoliday: PropTypes.bool,
+  publicHoliday: PropTypes.string,
+  guests: PropTypes.array,
+  notes: PropTypes.string
 };
