@@ -35,13 +35,8 @@
   padding-left: 3px;
 }
 
-.bookings-row {
+.bookings-row, .guests-row {
   padding-bottom: 10px;
-}
-
-.booking {
-  font-size: 14px;
-  padding-left: 10px;
 }
 
 .school-holiday {

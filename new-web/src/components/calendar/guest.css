@@ -1,14 +1,15 @@
-.booking {
+.guest {
   display: flex;
   padding-left: 10px;
 }
 
-.booking-name {
+.guest-name {
   font-weight: 400;
   color: #3c4043;
   font-size: 12px;
 }
-.booking-dot {
+
+.guest-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;

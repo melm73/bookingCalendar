@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Booking from './booking';
+import Guest from './guest';
 import './day.css';
 
 // import dayModalActions from '../../actions/day-modal-actions';
@@ -24,10 +25,18 @@ export default class Day extends React.Component {
       let bookings = [];
 
       Object.keys(this.props.attributes.bookings).forEach((key, idx) => {
-        bookings.push(<Booking key={key} guest={key} />);
+        bookings.push(<Booking key={key} name={key} />);
       }); 
 
       return bookings;
+    }
+  }
+
+  renderGuests() {
+    if (this.props.attributes.guests) {
+      return this.props.attributes.guests.map(guest => (
+        <Guest key={guest.name} name={guest.name} owner={guest.owner} />
+      )); 
     }
   }
 
@@ -41,6 +50,9 @@ export default class Day extends React.Component {
         </div>
         <div className='bookings-row'>
           {this.renderBookings()}
+        </div>
+        <div className='guests-row'>
+          {this.renderGuests()}
         </div>
         <div className='notes-row'>
           {this.props.attributes.notes}
