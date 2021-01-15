@@ -10,3 +10,4 @@ export const PREVIOUS_MONTH = 'PREVIOUS_MONTH';
 export const CURRENT_MONTH = 'CURRENT_MONTH';
 
 export const SET_DAYS = 'SET_DAYS';
+export const SET_REPORT_DAYS = 'SET_REPORT_DAYS';
