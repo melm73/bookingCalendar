@@ -3,7 +3,6 @@
 require "bundler/setup"
 require "hanami/api"
 require "hanami/middleware/body_parser"
-require 'aws-sdk-dynamodb'
 
 class App < Hanami::API
   use Hanami::Middleware::BodyParser, :json
@@ -22,8 +21,7 @@ class App < Hanami::API
         bookings: params[:bookings]
       }
     }
-    dynamodb_client = Aws::DynamoDB::Client.new
-    dynamodb_client.put_item(table_item)
+    $db_client.put_item(table_item)
 
     status 201
     json({})
@@ -33,7 +31,6 @@ class App < Hanami::API
     year = params[:year].to_i
     month = params[:month].to_i
 
-    dynamodb_client = Aws::DynamoDB::Client.new
     params = {
       table_name: TABLE_NAME,
       key_condition_expression: "#id = :id  and begins_with(#day, :year_month)",
@@ -46,8 +43,7 @@ class App < Hanami::API
         ':year_month': "#{year}-#{"%02d" % month}"
       }
     }
-
-    result = dynamodb_client.query(params)
+    result = $db_client.query(params)
 
     results = result.items.map do |item|
       {

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+aws dynamodb create-table --table-name moggs-calendar --endpoint-url http://localhost:8000 \
+    --attribute-definitions AttributeName=id,AttributeType=S AttributeName=day,AttributeType=S \
+    --key-schema AttributeName=id,KeyType=HASH AttributeName=day,KeyType=RANGE \
+    --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10

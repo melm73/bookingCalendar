@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+docker run -dp 8000:8000 amazon/dynamodb-local

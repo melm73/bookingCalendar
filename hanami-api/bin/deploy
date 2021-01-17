@@ -3,22 +3,15 @@ set -euo pipefail
 IFS=$'\n\t'
 
 compressed=lambda_function.zip
+function=moggs-booking-calendar
 
 setup() {
-  # Export this ENV var in your .bashrc or .zshrc
-  export GPG_TTY=$(tty)
-
-  if test -f $(pwd)/.config ; then
-    . $(pwd)/.config
-  else
-    echo "No config file:" $(pwd)/.config
-    exit 1
-  fi
+  rm $compressed
 }
 
 bundle_pkg() {
-  # mv vendor _vendor
-  bundle install --without=test
+  mv vendor _vendor
+  bundle install --without=development
 }
 
 compress() {
@@ -26,23 +19,20 @@ compress() {
 }
 
 upload() {
-  aws lambda update-function-code --region $region --function-name $function --zip-file fileb://$compressed
+  aws lambda update-function-code --function-name $function --zip-file fileb://$compressed
 }
 
 teardown() {
-  rm $compressed
   rm -rf vendor
   mv _vendor vendor
-
-  git checkout .bundle/config Gemfile.lock
 }
 
 main() {
   setup
   bundle_pkg
   compress
-  # upload
-  # teardown
+  upload
+  teardown
 }
 
 main
